@@ -1,0 +1,25 @@
+services:
+  fastapi-app:
+    image: stem-separation
+    build:
+      context: ./stem-separation
+      dockerfile: Dockerfile-dev
+    ports:
+      - '8000:80'
+    volumes:
+      - ./stem-separation/src:/app/src:z
+    restart: 'no'
+
+  song-upload:
+    image: song-upload
+    build:
+      context: ./song-upload
+      dockerfile: Dockerfile-dev
+    container_name: song-upload
+    volumes:
+      - ./song-upload/src:/app/src:z
+    ports:
+      - '4000:80'
+    environment:
+      - PORT=80
+    restart: 'no'

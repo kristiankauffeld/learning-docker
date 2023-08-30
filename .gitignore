@@ -1,0 +1,12 @@
+# General
+.vscode/*
+.DS_Store
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Dependency directories
+node_modules/
+
+# dotenv environment variable files
+.env
