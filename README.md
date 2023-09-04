@@ -7,3 +7,9 @@ In order to control the order of service startup, I've used the `healthcheck` pa
 ### Current Issues
 
 Hot reloading for the "stem-separation" service currently doesn't work. The long-running RabbitMQ consumer seems to interfere with FastAPI's hot-reloading feature.
+
+https://github.com/XCanG/fastapi-rabbitmq/blob/master/listener.py
+
+https://aio-pika.readthedocs.io/en/latest/rabbitmq-tutorial/1-introduction.html
+
+https://groups.google.com/g/rabbitmq-users/c/fSrIb6df-yc?pli=1
