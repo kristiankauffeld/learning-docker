@@ -1,4 +1,15 @@
 services:
+  postgres-db:
+    image: postgres
+    container_name: postgres-db
+    ports:
+      - 4001:5432 #normally 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    restart: always
+
   rabbit:
     image: rabbitmq:3.9.21-management
     healthcheck:
@@ -24,13 +35,16 @@ services:
     ports:
       - '8000:80'
     environment:
-      - RABBIT=amqp://guest:guest@rabbit:5672
+      RABBIT: amqp://guest:guest@rabbit:5672
+      DB_URL: postgresql://postgres:postgres@postgres-db:5432/postgres
     volumes:
       - ./stem-separation/src:/app/src:z
       - ./stem-separation/scripts:/app/scripts:z
     depends_on:
       rabbit:
         condition: service_healthy
+      postgres-db:
+        condition: service_started
     restart: 'no'
 
   song-upload:
