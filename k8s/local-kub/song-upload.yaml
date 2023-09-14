@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: song-upload
+spec:
+  selector:
+    app: song-upload
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 4000
+      nodePort: 30000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: song-upload
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: song-upload
+  template:
+    metadata:
+      labels:
+        app: song-upload
+    spec:
+      containers:
+        - name: song-upload
+          image: song-upload:1
+          imagePullPolicy: Never
+          env:
+            - name: PORT
+              value: '4000'
+            - name: RABBIT
+              value: amqp://test:test@rabbit:5672

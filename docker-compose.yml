@@ -39,7 +39,6 @@ services:
       DB_URL: postgresql://postgres:postgres@postgres-db:5432/postgres
     volumes:
       - ./stem-separation/src:/app/src:z
-      - ./stem-separation/scripts:/app/scripts:z
     depends_on:
       rabbit:
         condition: service_healthy
