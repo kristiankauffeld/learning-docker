@@ -11,3 +11,5 @@
 #
 kubectl apply -f rabbit.yaml
 kubectl apply -f song-upload.yaml
+kubectl apply -f postgres.yaml
+kubectl apply -f stem-separation.yaml
